@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Input, Sender } from "../../styles/components";
-import { UserContext } from "../../context/Context";
-import { postLogin } from "../../services/api";
+import { Input, Sender } from "../../../styles/public";
+import { UserContext } from "../../../context/Context";
+import { postLogin } from "../../../services/api";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");

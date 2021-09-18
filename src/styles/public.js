@@ -33,7 +33,7 @@ const Input = styled.input`
   line-height: 24px;
   font-weight: 400;
   font-family: "Lexenda Deca", sans-serif;
-  color: #dbdbdb;
+  color: #666;
 
   display: block;
   width: 100%;
@@ -43,6 +43,10 @@ const Input = styled.input`
   border-radius: 5px;
   outline: none;
   box-sizing: border-box;
+
+  ::placeholder {
+    color: #dbdbdb;
+  }
 `;
 
 const Sender = styled.button`
