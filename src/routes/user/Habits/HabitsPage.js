@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container } from "../../../styles/global";
-import { UserContext } from "../../../context/Context";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import styled from "styled-components";
-import { getHabits } from "../../../services/api";
+
+import Header from "../../../components/Header";
+import { Container } from "../../../styles/global";
 import { Content, TitleBox } from "../../../styles/user";
+import Habit from "./Habit";
 import CreateNewHabit from "./CreateNewHabit";
+import Footer from "../../../components/Footer";
+
+import { getHabits } from "../../../services/api";
+
+import { UserContext } from "../../../context/Context";
 
 export default function HabitsPage() {
   const [habits, setHabits] = useState([]);
@@ -18,7 +22,7 @@ export default function HabitsPage() {
     let isActive = true;
 
     getHabits(user.token)
-      .then((res) => (isActive ? setHabits(res.data) : null))
+      .then((res) => (isActive ? setHabits([...res.data].reverse()) : null))
       .catch((err) => err.response);
 
     return () => {
@@ -38,9 +42,17 @@ export default function HabitsPage() {
             </CreateButton>
           </TitleBox>
 
-          {isCreatingNew ? <CreateNewHabit /> : null}
+          {isCreatingNew ? (
+            <CreateNewHabit setIsCreatingNew={setIsCreatingNew} />
+          ) : null}
 
-          {habits.length > 0 ? null : (
+          {habits.length > 0 ? (
+            <ul>
+              {habits.map((habit, key) => (
+                <Habit key={key} habit={habit} />
+              ))}
+            </ul>
+          ) : (
             <WithoutHabits>
               Você não tem nenhum hábito cadastrado ainda. Adicione um hábito
               para começar a trackear!

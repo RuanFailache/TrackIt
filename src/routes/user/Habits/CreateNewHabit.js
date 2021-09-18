@@ -1,36 +1,47 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
-import { Days, Day } from "../../../styles/user";
+import Days from "../../../components/Days";
 
-export default function CreateNewHabit() {
-  function cancelCreation(e) {
-    e.preventDefault();
-  }
+import { UserContext } from "../../../context/Context";
+
+import { postNewHabit } from "../../../services/api";
+
+export default function CreateNewHabit({ setIsCreatingNew }) {
+  const [newHabit, setNewHabit] = useState("");
+  const [days, setDays] = useState([]);
+
+  const { user } = useContext(UserContext);
 
   function createHabit(e) {
     e.preventDefault();
+    if (days.length === 0) {
+      alert("Selecione ao menos um dia!");
+      return;
+    }
+    postNewHabit(user.token, newHabit, days)
+      .then(() => setIsCreatingNew(false))
+      .catch((err) => console.log(err.response));
   }
 
   return (
     <NewHabitForm onSubmit={createHabit}>
-      <input type="text" placeholder="nome do hábito" />
-
-      <Days>
-        {["D", "S", "T", "Q", "Q", "S", "S"].map((day, key) => (
-          <Day key={key}>{day}</Day>
-        ))}
-      </Days>
-
+      <input
+        type="text"
+        value={newHabit}
+        onChange={(e) => setNewHabit(e.target.value)}
+        placeholder="nome do hábito"
+        required
+      />
+      <Days days={days} setDays={setDays} isClickable={true} />
       <Controls>
         <Button
           fontColor="#52b6ff"
           bgColor="transparent"
-          onClick={cancelCreation}
+          onClick={() => setIsCreatingNew(false)}
         >
           Cancelar
         </Button>
-
         <Button fontColor="#fff" bgColor="#52b6ff" type="submit">
           Salvar
         </Button>
@@ -86,4 +97,5 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   background-color: ${(props) => props.bgColor};
+  cursor: pointer;
 `;

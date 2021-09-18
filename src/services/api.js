@@ -18,6 +18,14 @@ const postSignUp = (email, password, name, image) => {
   return axios.post(`${BASE_URL}/auth/sign-up`, body);
 };
 
+const postNewHabit = (token, name, days) => {
+  const body = { name, days };
+  return axios.post(`${BASE_URL}/habits`, body, getConfig(token));
+};
+
 const getHabits = (token) => axios.get(`${BASE_URL}/habits`, getConfig(token));
 
-export { postLogin, postSignUp, getHabits };
+const deleteHabit = (token, habitId) =>
+  axios.delete(`${BASE_URL}/habits/${habitId}`, getConfig(token));
+
+export { postLogin, postSignUp, postNewHabit, getHabits, deleteHabit };

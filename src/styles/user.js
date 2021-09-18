@@ -24,24 +24,4 @@ const TitleBox = styled.div`
   }
 `;
 
-const Days = styled.ul`
-  display: flex;
-  gap: 3.375px;
-`;
-
-const Day = styled.li`
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 400;
-  color: #dbdbdb;
-
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border: solid 1px #d4d4d4;
-  border-radius: 5px;
-  cursor: pointer;
-`;
-
-export { Content, TitleBox, Days, Day };
+export { Content, TitleBox };
