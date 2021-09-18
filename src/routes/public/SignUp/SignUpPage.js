@@ -1,6 +1,7 @@
 import React from "react";
 import SignUpForm from "./SignUpForm";
-import { Container, Logo, GoToPage } from "../../../styles/public";
+import { Container } from "../../../styles/global";
+import { Logo, GoToPage } from "../../../styles/public";
 import logo from "../../../assets/logo.svg";
 import { useHistory } from "react-router";
 

@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Input, Sender } from "../../../styles/public";
-import { UserContext } from "../../../context/Context";
 import { postSignUp } from "../../../services/api";
 import { useHistory } from "react-router";
 
@@ -10,17 +9,12 @@ export default function SignUForm() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
 
-  const { setUser } = useContext(UserContext);
-
   const hst = useHistory();
 
   function login(e) {
     e.preventDefault();
     postSignUp(email, password, name, image)
-      .then((res) => {
-        setUser(res.data);
-        hst.push("/");
-      })
+      .then(() => hst.push("/"))
       .catch((err) => console.log(err.response));
   }
 
