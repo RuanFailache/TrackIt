@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Login from "../routes/Login/LoginPage";
+import Login from "../routes/public/Login/LoginPage";
+import SignUp from "../routes/public/SignUp/SignUpPage";
 
 import { UserContext } from "../context/Context";
 
@@ -15,6 +16,7 @@ export default function App() {
       <Switch>
         <UserContext.Provider value={setUser}>
           <Route exact path="/" component={Login} />
+          <Route exact path="/cadastro" component={SignUp} />
         </UserContext.Provider>
       </Switch>
     </BrowserRouter>

@@ -13,4 +13,9 @@ const postLogin = (email, password) => {
   return axios.post(`${BASE_URL}/auth/login`, body);
 };
 
-export { postLogin };
+const postSignUp = (email, password, name, image) => {
+  const body = { email, password, name, image };
+  return axios.post(`${BASE_URL}/auth/sign-up`, body);
+};
+
+export { postLogin, postSignUp };

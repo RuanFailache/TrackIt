@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-import { Container, Logo, GoToPage } from "../../styles/components";
-import logo from "../../assets/logo.svg";
+import { Container, Logo, GoToPage } from "../../../styles/public";
+import logo from "../../../assets/logo.svg";
 import { useHistory } from "react-router";
 
 export default function Login() {
