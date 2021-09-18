@@ -57,6 +57,7 @@ const Option = styled.li`
   font-weight: 400;
   color: #52b6ff;
   padding: 9px;
+  cursor: pointer;
 `;
 
 const CenterOption = styled.div`
@@ -64,6 +65,7 @@ const CenterOption = styled.div`
   width: 91px;
   bottom: -5px;
   left: calc(50% - 45px);
+  cursor: pointer;
 
   strong {
     font-size: 18px;

@@ -18,4 +18,6 @@ const postSignUp = (email, password, name, image) => {
   return axios.post(`${BASE_URL}/auth/sign-up`, body);
 };
 
-export { postLogin, postSignUp };
+const getHabits = (token) => axios.get(`${BASE_URL}/habits`, getConfig(token));
+
+export { postLogin, postSignUp, getHabits };
