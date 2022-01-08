@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import themes from './themes'
 
 export const SignFormStyle = styled.form`
   display: flex;
@@ -18,7 +19,7 @@ export const SignFormStyle = styled.form`
     margin-top: 15px;
     font-size: 14px;
     line-height: 17px;
-    color: #52b6ff;
+    color: ${themes.lightBlue};
   }
 `
 
@@ -26,7 +27,7 @@ export const InputStyle = styled.input`
   display: block;
   width: 100%;
   padding: 10px;
-  border: solid 1px #dbdbdb;
+  border: solid 1px ${themes.gray};
   border-radius: 5px;
   font-size: 18px;
   line-height: 21px;
@@ -34,7 +35,7 @@ export const InputStyle = styled.input`
   outline: none;
 
   &::placeholder {
-    color: #dbdbdb;
+    color: ${themes.gray};
   }
 `
 
@@ -50,8 +51,8 @@ export const ButtonStyle = styled.button<ButtonStyleInterface>`
   border-radius: 5px;
   font-size: 18px;
   line-height: 21px;
-  background-color: #52b6ff;
-  color: #ffffff;
+  background-color: ${themes.lightBlue};
+  color: ${themes.white};
   cursor: pointer;
 `
 

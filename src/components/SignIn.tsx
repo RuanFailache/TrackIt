@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useCallback, useContext, useMemo, useState } from 'react'
 
-import Input from './User/Input'
-import Button from './User/Button'
+import Input from './Form/Input'
+import Button from './Form/Button'
 
 import { ErrorMessageStyle, SignFormStyle } from '../styles/FormStyle'
 import { ContainerStyle } from '../styles/GlobalStyle'
 
-import logo from '../assets/Logo.jpg'
+import logo from '../assets/Logo.svg'
 
 import { signInAndGetToken } from '../services/userService'
 
@@ -25,18 +25,22 @@ export default function SignIn() {
 
   const elements = useMemo(() => ({ email, password }), [email, password])
 
+  const adjustResponseData = useCallback((data) => {
+    const result = data
+
+    delete result.id
+    delete result.email
+    delete result.password
+
+    return result
+  }, [])
+
   const handleSubmitSuccess = useCallback((response) => {
     if (response.status === 200) {
-      const { data } = response
-
-      delete data.id
-      delete data.email
-      delete data.password
-
-      context?.setUser(data)
-
+      const user = adjustResponseData(response.data)
+      context?.setUser(user)
       setIsLoading(false)
-      navigateTo('/sign-up')
+      navigateTo('/habitos')
     } else throw response
   }, [])
 
@@ -79,7 +83,7 @@ export default function SignIn() {
 
         <Button isLoading={isLoading}>Entrar</Button>
 
-        <Link to="/sign-up">Não tem uma conta? Cadastre-se!</Link>
+        <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
       </SignFormStyle>
     </ContainerStyle>
   )

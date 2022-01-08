@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useMemo, useState } from 'react'
 
-import Input from './User/Input'
-import Button from './User/Button'
+import Input from './Form/Input'
+import Button from './Form/Button'
 
 import { ErrorMessageStyle, SignFormStyle } from '../styles/FormStyle'
 import { ContainerStyle } from '../styles/GlobalStyle'
 
-import logo from '../assets/Logo.jpg'
+import logo from '../assets/Logo.svg'
 
 import { createNewUser } from '../services/userService'
 
@@ -86,7 +86,7 @@ export default function SignUp() {
 
         <Button isLoading={isLoading}>Cadastrar</Button>
 
-        <Link to="/sign-in">Já tem uma conta? Faça login!</Link>
+        <Link to="/">Já tem uma conta? Faça login!</Link>
       </SignFormStyle>
     </ContainerStyle>
   )
