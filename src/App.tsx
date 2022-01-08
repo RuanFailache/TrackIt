@@ -8,12 +8,18 @@ import SignUp from './components/SignUp'
 
 import UserContext from './contexts/UserContext'
 
-import { UserInterface } from './interfaces/UserContextInterface'
+import {
+  UserInterface,
+  UserContextInterface,
+} from './interfaces/User/UserContextInterface'
 
 export default function App() {
   const [user, setUser] = useState<UserInterface | null>(null)
 
-  const userState = useMemo(() => ({ user, setUser }), [user])
+  const userState = useMemo<UserContextInterface>(
+    () => ({ user, setUser }),
+    [user]
+  )
 
   return (
     <BrowserRouter>

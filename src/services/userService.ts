@@ -1,28 +1,20 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
+import {
+  LoginInterface,
+  LoginResponseInterface,
+} from '../interfaces/User/LoginInterface'
+
+import NewUserInterface from '../interfaces/User/NewUserInterface'
+
 const url = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth'
 
-interface User {
-  email: string
-  password: string
-  name: string
-  image: string
-}
-
-interface NewUser {
-  email: string
-  password: string
-}
-
-interface SignInResponse {
-  name: string
-  image: string
-  token: string
-}
+type RegisterReturn = AxiosResponse<AxiosError> | unknown
+type LoginReturn = AxiosResponse<LoginResponseInterface | AxiosError> | unknown
 
 export async function createNewUser(
-  body: User
-): Promise<AxiosResponse<AxiosError> | unknown> {
+  body: NewUserInterface
+): Promise<RegisterReturn> {
   try {
     return axios.post(`${url}/sign-up`, body)
   } catch (err) {
@@ -31,8 +23,8 @@ export async function createNewUser(
 }
 
 export async function signInAndGetToken(
-  body: NewUser
-): Promise<AxiosResponse<SignInResponse | AxiosError> | unknown> {
+  body: LoginInterface
+): Promise<LoginReturn> {
   try {
     return axios.post(`${url}/login`, body)
   } catch (err) {
