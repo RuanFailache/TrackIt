@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useMemo, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
+import GlobalStyle from './styles/GlobalStyle'
+
+import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
+
+import UserContext from './contexts/UserContext'
+
+import { UserInterface } from './interfaces/UserContextInterface'
+
+export default function App() {
+  const [user, setUser] = useState<UserInterface | null>(null)
+
+  const userState = useMemo(() => ({ user, setUser }), [user])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <BrowserRouter>
+      <GlobalStyle />
 
-export default App;
+      <UserContext.Provider value={userState}>
+        <Routes>
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
+        </Routes>
+      </UserContext.Provider>
+    </BrowserRouter>
+  )
+}
