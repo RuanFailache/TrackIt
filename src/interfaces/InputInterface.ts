@@ -4,5 +4,5 @@ export default interface InputInterface {
   value: string
   setValue: Dispatch<SetStateAction<string>>
   isLoading: boolean
-  type: 'email' | 'password' | 'name' | 'image'
+  type: 'email' | 'password' | 'name' | 'image' | 'habit'
 }

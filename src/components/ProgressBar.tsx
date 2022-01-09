@@ -8,12 +8,17 @@ import { ProgressBarStyle } from '../styles/FixedComponentsStyle'
 import themes from '../styles/themes'
 
 import 'react-circular-progressbar/dist/styles.css'
+import useGetTodayHabits from '../hooks/useGetTodayHabits'
+import { usePercentageHabitsDone } from '../hooks/usePercentageHabitsDone'
 
 export default function ProgressBar() {
+  const todayHabits = useGetTodayHabits()
+  const percentageHabitsDone = usePercentageHabitsDone(todayHabits)
+
   return (
     <ProgressBarStyle>
       <CircularProgressbarWithChildren
-        value={66}
+        value={percentageHabitsDone}
         background
         backgroundPadding={6}
         styles={buildStyles({

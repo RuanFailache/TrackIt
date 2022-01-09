@@ -4,7 +4,7 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import Input from './Form/Input'
 import Button from './Form/Button'
 
-import { ErrorMessageStyle, SignFormStyle } from '../styles/FormStyle'
+import { MessageStyle, SignFormStyle } from '../styles/FormStyle'
 import { ContainerStyle } from '../styles/GlobalStyle'
 
 import logo from '../assets/Logo.svg'
@@ -36,18 +36,16 @@ export default function SignIn() {
   }, [])
 
   const handleSubmitSuccess = useCallback((response) => {
-    if (response.status === 200) {
-      const user = adjustResponseData(response.data)
-      context?.setUser(user)
-      setIsLoading(false)
-      navigateTo('/habitos')
-    } else throw response
+    const user = adjustResponseData(response.data)
+    context?.setUser(user)
+    setIsLoading(false)
+    navigateTo('/habitos')
   }, [])
 
   const handleSubmitError = useCallback((error) => {
     const { status } = error.response
 
-    if (status === 422) {
+    if (status === 401) {
       setMessage('Dados inseridos inválidos!')
     }
 
@@ -65,7 +63,7 @@ export default function SignIn() {
       <SignFormStyle onSubmit={(event) => handleSubmit(event, elements)}>
         <img src={logo} alt="Logo TrackIt" />
 
-        {message ? <ErrorMessageStyle>{message}</ErrorMessageStyle> : null}
+        {message ? <MessageStyle>{message}</MessageStyle> : null}
 
         <Input
           value={email}

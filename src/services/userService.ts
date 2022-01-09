@@ -15,19 +15,11 @@ type LoginReturn = AxiosResponse<LoginResponseInterface | AxiosError> | unknown
 export async function createNewUser(
   body: NewUserInterface
 ): Promise<RegisterReturn> {
-  try {
-    return axios.post(`${url}/sign-up`, body)
-  } catch (err) {
-    return axios.isAxiosError(err) ? err.response : err
-  }
+  return axios.post(`${url}/sign-up`, body)
 }
 
 export async function signInAndGetToken(
   body: LoginInterface
 ): Promise<LoginReturn> {
-  try {
-    return axios.post(`${url}/login`, body)
-  } catch (err) {
-    return axios.isAxiosError(err) ? err.response : err
-  }
+  return axios.post(`${url}/login`, body)
 }

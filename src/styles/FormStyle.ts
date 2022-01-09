@@ -31,6 +31,7 @@ export const InputStyle = styled.input`
   border-radius: 5px;
   font-size: 18px;
   line-height: 21px;
+  color: ${themes.darkGray};
   box-sizing: border-box;
   outline: none;
 
@@ -39,13 +40,9 @@ export const InputStyle = styled.input`
   }
 `
 
-interface ButtonStyleInterface {
-  width?: string
-}
-
-export const ButtonStyle = styled.button<ButtonStyleInterface>`
+export const ButtonStyle = styled.button`
   display: block;
-  width: ${(props) => props.width || '100%'};
+  width: 100%;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -56,10 +53,11 @@ export const ButtonStyle = styled.button<ButtonStyleInterface>`
   cursor: pointer;
 `
 
-export const ErrorMessageStyle = styled.p`
+export const MessageStyle = styled.p`
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${themes.darkGray};
 `

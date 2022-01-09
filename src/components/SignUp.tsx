@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from 'react'
 import Input from './Form/Input'
 import Button from './Form/Button'
 
-import { ErrorMessageStyle, SignFormStyle } from '../styles/FormStyle'
+import { MessageStyle, SignFormStyle } from '../styles/FormStyle'
 import { ContainerStyle } from '../styles/GlobalStyle'
 
 import logo from '../assets/Logo.svg'
@@ -24,22 +24,21 @@ export default function SignUp() {
     [email, password, name, image]
   )
 
-  const handleSubmitSuccess = useCallback((response) => {
-    if (response.status === 201) {
-      setMessage('Usuário cadastrado com sucesso!')
-      setIsLoading(false)
-      return response.data
-    }
-    throw response
+  const handleSubmitSuccess = useCallback(() => {
+    setMessage('Usuário cadastrado com sucesso!')
+    setIsLoading(false)
   }, [])
 
   const handleSubmitError = useCallback((error) => {
-    const { status } = error.response
-
-    if (status === 422 || status === 409) {
-      setMessage('Dados inseridos inválidos')
+    const messages: { [key: number]: string } = {
+      400: 'Dados inseridos invalidos',
+      409: 'Usuário já cadastrado',
     }
 
+    const defaultErrorMessage =
+      'Erro desconhecido! Atualize a página ou entre em contato'
+
+    setMessage(messages[error.status] || defaultErrorMessage)
     setIsLoading(false)
   }, [])
 
@@ -54,7 +53,7 @@ export default function SignUp() {
       <SignFormStyle onSubmit={(event) => handleSubmit(event, elements)}>
         <img src={logo} alt="Logo TrackIt" />
 
-        {message ? <ErrorMessageStyle>{message}</ErrorMessageStyle> : null}
+        {message ? <MessageStyle>{message}</MessageStyle> : null}
 
         <Input
           value={email}

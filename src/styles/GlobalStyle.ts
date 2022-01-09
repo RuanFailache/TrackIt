@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import themes from './themes'
 
 const GlobalStyle = createGlobalStyle`
 	html, body, div, span, applet, object, iframe,
@@ -52,6 +53,17 @@ export const ContainerStyle = styled.div`
   width: 325px;
   margin: 0 auto;
   position: relative;
+`
+
+export const MainStyle = styled.main`
+  margin-top: 90px;
+  margin-bottom: 126px;
+
+  h2 {
+    font-size: 22px;
+    line-height: 25px;
+    color: ${themes.darkBlue};
+  }
 `
 
 export default GlobalStyle

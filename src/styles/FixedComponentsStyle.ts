@@ -8,22 +8,23 @@ export const HeaderStyle = styled.header`
   top: 0;
   left: 0;
   background-color: ${themes.darkBlue};
+  z-index: 1;
 
-  & > div {
+  div {
     display: flex;
     height: 100%;
     justify-content: space-between;
     align-items: center;
   }
 
-  & > div > h1 {
+  h1 {
     font-family: 'Playball', cursive;
     font-size: 38px;
     line-height: 41px;
     color: ${themes.white};
   }
 
-  & > div > img {
+  img {
     display: block;
     width: 51px;
     height: 51px;
