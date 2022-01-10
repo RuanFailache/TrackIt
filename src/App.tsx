@@ -16,6 +16,7 @@ import {
 
 import FontStyles from './styles/FontStyles'
 import Today from './components/Today/Today'
+import Historical from './components/Historical'
 
 export default function App() {
   const [user, setUser] = useState<UserInterface | null>(null)
@@ -38,6 +39,7 @@ export default function App() {
             <>
               <Route path="habitos" element={<Habits />} />
               <Route path="hoje" element={<Today />} />
+              <Route path="historico" element={<Historical />} />
             </>
           ) : (
             <Route path="*" element={<Navigate to="/" />} />

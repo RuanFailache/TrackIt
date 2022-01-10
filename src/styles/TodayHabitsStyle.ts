@@ -5,6 +5,10 @@ export const TodayHabitsTitleStyle = styled.header`
   display: flex;
   flex-flow: nowrap column;
   gap: 10px;
+
+  p {
+    color: ${themes.darkGray};
+  }
 `
 
 export const TodayHabitStyle = styled.li`
